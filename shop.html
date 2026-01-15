@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mimi Tracker - VALORANT ショップ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="shop.css">
+</head>
+<body>
+    <!-- ナビゲーションバー -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <span class="logo-text">Mimi Tracker</span>
+                </a>
+            </div>
+            <div class="nav-center">
+                <a href="index.html" class="nav-item">検索</a>
+                <a href="shop.html" class="nav-item active">ショップ</a>
+            </div>
+            <div class="nav-right">
+                <button class="login-btn" onclick="openLoginModal()">ログイン</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sample Data Notice -->
+        <div class="sample-data-notice">
+            <span class="sample-data-badge">Sample Data</span>
+            <span class="sample-data-text">このサイトはプロトタイプです。表示されているデータはサンプルデータです。</span>
+        </div>
+
+        <!-- ショップ情報 -->
+        <section class="shop-info">
+            <div class="shop-header">
+                <h2>今日のショップ</h2>
+                <p class="shop-date">更新日時: 2024年1月15日 00:00 (JST)</p>
+                <p class="shop-note">※ ショップは24時間ごとに更新されます</p>
+            </div>
+        </section>
+
+        <!-- ショップアイテム -->
+        <section class="shop-items">
+            <div class="shop-item">
+                <div class="item-image-container">
+                    <div class="sample-image-placeholder weapon-placeholder" data-name="Sample Vandal">
+                        <span class="sample-image-text">Sample Vandal</span>
+                    </div>
+                </div>
+                <div class="item-info">
+                    <h3 class="item-name">Vandal</h3>
+                    <p class="item-skin">Prime Vandal</p>
+                    <div class="item-price">
+                        <span class="price-icon">💰</span>
+                        <span class="price-value">1,775 VP</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shop-item">
+                <div class="item-image-container">
+                    <div class="sample-image-placeholder weapon-placeholder" data-name="Sample Phantom">
+                        <span class="sample-image-text">Sample Phantom</span>
+                    </div>
+                </div>
+                <div class="item-info">
+                    <h3 class="item-name">Phantom</h3>
+                    <p class="item-skin">Oni Phantom</p>
+                    <div class="item-price">
+                        <span class="price-icon">💰</span>
+                        <span class="price-value">1,775 VP</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shop-item">
+                <div class="item-image-container">
+                    <div class="sample-image-placeholder weapon-placeholder" data-name="Sample Operator">
+                        <span class="sample-image-text">Sample Operator</span>
+                    </div>
+                </div>
+                <div class="item-info">
+                    <h3 class="item-name">Operator</h3>
+                    <p class="item-skin">Araxys Operator</p>
+                    <div class="item-price">
+                        <span class="price-icon">💰</span>
+                        <span class="price-value">2,175 VP</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shop-item">
+                <div class="item-image-container">
+                    <div class="sample-image-placeholder weapon-placeholder" data-name="Sample Spectre">
+                        <span class="sample-image-text">Sample Spectre</span>
+                    </div>
+                </div>
+                <div class="item-info">
+                    <h3 class="item-name">Spectre</h3>
+                    <p class="item-skin">Reaver Spectre</p>
+                    <div class="item-price">
+                        <span class="price-icon">💰</span>
+                        <span class="price-value">1,775 VP</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shop-item">
+                <div class="item-image-container">
+                    <div class="sample-image-placeholder weapon-placeholder" data-name="Sample Classic">
+                        <span class="sample-image-text">Sample Classic</span>
+                    </div>
+                </div>
+                <div class="item-info">
+                    <h3 class="item-name">Classic</h3>
+                    <p class="item-skin">Glitchpop Classic</p>
+                    <div class="item-price">
+                        <span class="price-icon">💰</span>
+                        <span class="price-value">875 VP</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shop-item">
+                <div class="item-image-container">
+                    <div class="sample-image-placeholder weapon-placeholder" data-name="Sample Sheriff">
+                        <span class="sample-image-text">Sample Sheriff</span>
+                    </div>
+                </div>
+                <div class="item-info">
+                    <h3 class="item-name">Sheriff</h3>
+                    <p class="item-skin">Reaver Sheriff</p>
+                    <div class="item-price">
+                        <span class="price-icon">💰</span>
+                        <span class="price-value">875 VP</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- バンドル情報 -->
+        <section class="bundle-section">
+            <h3 class="section-title">今週のバンドル</h3>
+            <div class="bundle-card">
+                <div class="bundle-image-container">
+                    <div class="sample-image-placeholder weapon-placeholder" data-name="Sample Bundle">
+                        <span class="sample-image-text">Sample Bundle</span>
+                    </div>
+                </div>
+                <div class="bundle-info">
+                    <h4>Prime Collection</h4>
+                    <p>4つの武器スキンが含まれた特別バンドル</p>
+                    <div class="bundle-price">
+                        <span class="price-icon">💰</span>
+                        <span class="price-value">7,100 VP</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ログインモーダル -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2>ログイン</h2>
+            <p class="modal-subtitle">Riotアカウントでログインして自分の戦績を表示</p>
+            <form class="login-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="username">ユーザー名</label>
+                    <input type="text" id="username" name="username" placeholder="プレイヤー名#タグライン" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">パスワード</label>
+                    <input type="password" id="password" name="password" placeholder="パスワード" required>
+                </div>
+                <button type="submit" class="login-submit-btn">ログイン</button>
+                <p class="login-note">※ RSO認証機能はAPIキー発行後に実装予定です</p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openLoginModal() {
+            document.getElementById('loginModal').style.display = 'flex';
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            alert('RSO認証機能はAPIキー発行後に実装予定です');
+            closeLoginModal();
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('loginModal');
+            if (event.target == modal) {
+                closeLoginModal();
+            }
+        }
+    </script>
+
+    <!-- フッター -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="about.html">このサイトについて</a>
+                <a href="terms.html">利用規約</a>
+                <a href="privacy.html">プライバシーポリシー</a>
+            </div>
+            <div class="footer-text">
+                <p>Mimi Trackerは、Riot Games, Inc.とは提携しておらず、Riot Gamesの公式サービスではありません。</p>
+                <p>VALORANTは、Riot Games, Inc.の登録商標です。</p>
+                <p>&copy; 2024 Mimi Tracker. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

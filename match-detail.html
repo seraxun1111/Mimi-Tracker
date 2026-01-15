@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>試合詳細 | Mimi Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="match-detail.css">
+</head>
+<body>
+    <!-- ナビゲーションバー -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <div class="logo-img">🎯</div>
+                    <span class="logo-text">Mimi Tracker</span>
+                </a>
+            </div>
+            <div class="nav-tabs">
+                <a href="index.html" class="nav-tab">検索</a>
+                <a href="shop.html" class="nav-tab">ショップ</a>
+            </div>
+            <div class="nav-right">
+                <button class="login-btn" onclick="openLoginModal()">ログイン</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sample Data Notice -->
+        <div class="sample-data-notice">
+            <span class="sample-data-badge">Sample Data</span>
+            <span class="sample-data-text">このサイトはプロトタイプです。表示されているデータはサンプルデータです。</span>
+        </div>
+
+        <!-- マッチヘッダー -->
+        <div class="match-header-section">
+            <div class="match-header-top">
+                <div class="match-header-left">
+                    <div class="match-map-info">
+                        <span class="match-mode-badge-header">コンペティティブ</span>
+                        <span class="match-map-name">Haven</span>
+                    </div>
+                </div>
+                <div class="match-header-center">
+                    <div class="match-score-header">
+                        <span class="team-name team-a">Team A</span>
+                        <span class="score-display">13</span>
+                        <span class="score-separator-header">:</span>
+                        <span class="score-display">11</span>
+                        <span class="team-name team-b">Team B</span>
+                    </div>
+                    <div class="match-meta-info">
+                        <span class="match-date-header">2026/01/09 23:15</span>
+                        <span class="match-duration">34m 21s</span>
+                    </div>
+                </div>
+                <div class="match-header-right">
+                    <div class="average-rank-header">
+                        <span class="rank-icon-small">💎</span>
+                        <span>Average Rank Diamond III</span>
+                    </div>
+                    <div class="match-actions">
+                        <button class="action-btn" title="新しいタブで開く">🔗</button>
+                        <button class="action-btn" title="共有">📤</button>
+                        <button class="action-btn" onclick="window.history.back()" title="閉じる">✕</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ナビゲーションタブ -->
+        <div class="match-tabs">
+            <button class="match-tab active" data-tab="scoreboard">Scoreboard</button>
+            <button class="match-tab" data-tab="performance">Performance</button>
+            <button class="match-tab" data-tab="economy">Economy</button>
+            <button class="match-tab" data-tab="rounds">Rounds</button>
+            <button class="match-tab" data-tab="duels">Duels</button>
+        </div>
+
+        <!-- ラウンド履歴 -->
+        <div class="round-history-section">
+            <div class="round-history-visualizer">
+                <div class="round-item round-win" data-round="1" title="Round 1 - Team A Win"></div>
+                <div class="round-item round-win" data-round="2" title="Round 2 - Team A Win"></div>
+                <div class="round-item round-loss" data-round="3" title="Round 3 - Team B Win"></div>
+                <div class="round-item round-win" data-round="4" title="Round 4 - Team A Win"></div>
+                <div class="round-item round-win" data-round="5" title="Round 5 - Team A Win"></div>
+                <div class="round-item round-win" data-round="6" title="Round 6 - Team A Win"></div>
+                <div class="round-item round-win" data-round="7" title="Round 7 - Team A Win"></div>
+                <div class="round-item round-win" data-round="8" title="Round 8 - Team A Win"></div>
+                <div class="round-item round-win" data-round="9" title="Round 9 - Team A Win"></div>
+                <div class="round-item round-win" data-round="10" title="Round 10 - Team A Win"></div>
+                <div class="round-item round-loss" data-round="11" title="Round 11 - Team B Win"></div>
+                <div class="round-item round-loss" data-round="12" title="Round 12 - Team B Win"></div>
+                <div class="round-item round-win" data-round="13" title="Round 13 - Team A Win"></div>
+                <div class="round-item round-win" data-round="14" title="Round 14 - Team A Win"></div>
+                <div class="round-item round-win" data-round="15" title="Round 15 - Team A Win"></div>
+                <div class="round-item round-loss" data-round="16" title="Round 16 - Team B Win"></div>
+                <div class="round-item round-win" data-round="17" title="Round 17 - Team A Win"></div>
+                <div class="round-item round-win" data-round="18" title="Round 18 - Team A Win"></div>
+                <div class="round-item round-win" data-round="19" title="Round 19 - Team A Win"></div>
+                <div class="round-item round-loss" data-round="20" title="Round 20 - Team B Win"></div>
+                <div class="round-item round-win" data-round="21" title="Round 21 - Team A Win"></div>
+                <div class="round-item round-win" data-round="22" title="Round 22 - Team A Win"></div>
+                <div class="round-item round-win" data-round="23" title="Round 23 - Team A Win"></div>
+                <div class="round-item round-win" data-round="24" title="Round 24 - Team A Win"></div>
+            </div>
+        </div>
+
+        <!-- スコアボード -->
+        <div class="scoreboard-section" id="scoreboard-tab">
+            <!-- Team A -->
+            <div class="team-scoreboard">
+                <div class="team-header">
+                    <h3 class="team-title">Team A</h3>
+                    <span class="team-avg-rank">Avg. Rank: Diamond III</span>
+                </div>
+                <div class="scoreboard-table">
+                    <table class="player-stats-table">
+                        <thead>
+                            <tr>
+                                <th>Match Rank</th>
+                                <th>TRS</th>
+                                <th>ACS</th>
+                                <th>K</th>
+                                <th>D</th>
+                                <th>A</th>
+                                <th>+/-</th>
+                                <th>K/D</th>
+                                <th>DDΔ</th>
+                                <th>ADR</th>
+                                <th>HS%</th>
+                                <th>KAST</th>
+                                <th>FK</th>
+                                <th>FD</th>
+                                <th>MK</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="player-row" onclick="navigateToPlayer('moe pi', 'moe')">
+                                <td>
+                                    <div class="player-cell">
+                                        <div class="sample-image-placeholder agent-placeholder player-icon-small" data-name="Sample Jett">
+                                            <span class="sample-image-text">J</span>
+                                        </div>
+                                        <div class="rank-icon-small">💎</div>
+                                        <span class="player-name">moe pi</span>
+                                        <span class="player-tag">#moe</span>
+                                    </div>
+                                </td>
+                                <td>1</td>
+                                <td>317</td>
+                                <td>27</td>
+                                <td>17</td>
+                                <td>2</td>
+                                <td class="stat-positive">+10</td>
+                                <td>1.6</td>
+                                <td class="stat-positive">+57</td>
+                                <td>193.5</td>
+                                <td>51%</td>
+                                <td>79%</td>
+                                <td>4</td>
+                                <td>2</td>
+                                <td>2</td>
+                            </tr>
+                            <tr class="player-row" onclick="navigateToPlayer('我只会说日语', '일본인')">
+                                <td>
+                                    <div class="player-cell">
+                                        <div class="sample-image-placeholder agent-placeholder player-icon-small" data-name="Sample Raze">
+                                            <span class="sample-image-text">R</span>
+                                        </div>
+                                        <div class="rank-icon-small">🔷</div>
+                                        <span class="player-name">我只会说日语</span>
+                                        <span class="player-tag">#일본인</span>
+                                    </div>
+                                </td>
+                                <td>2</td>
+                                <td>272</td>
+                                <td>24</td>
+                                <td>15</td>
+                                <td>6</td>
+                                <td class="stat-positive">+9</td>
+                                <td>1.6</td>
+                                <td class="stat-positive">+59</td>
+                                <td>180.4</td>
+                                <td>29%</td>
+                                <td>83%</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>1</td>
+                            </tr>
+                            <tr class="player-row" onclick="navigateToPlayer('綾小路帆波', 'CAN')">
+                                <td>
+                                    <div class="player-cell">
+                                        <div class="sample-image-placeholder agent-placeholder player-icon-small" data-name="Sample Omen">
+                                            <span class="sample-image-text">O</span>
+                                        </div>
+                                        <div class="rank-icon-small">💎</div>
+                                        <span class="player-name">綾小路帆波</span>
+                                        <span class="player-tag">#CAN</span>
+                                    </div>
+                                </td>
+                                <td>3</td>
+                                <td>196</td>
+                                <td>16</td>
+                                <td>17</td>
+                                <td>13</td>
+                                <td class="stat-negative">-1</td>
+                                <td>0.9</td>
+                                <td class="stat-negative">-8</td>
+                                <td>123.0</td>
+                                <td>19%</td>
+                                <td>75%</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>0</td>
+                            </tr>
+                            <tr class="player-row" onclick="navigateToPlayer('初音ミク大', '初音ミク')">
+                                <td>
+                                    <div class="player-cell">
+                                        <div class="sample-image-placeholder agent-placeholder player-icon-small" data-name="Sample Sage">
+                                            <span class="sample-image-text">S</span>
+                                        </div>
+                                        <div class="rank-icon-small">🔷</div>
+                                        <span class="player-name">初音ミク大...</span>
+                                        <span class="player-tag">#初音ミク</span>
+                                    </div>
+                                </td>
+                                <td>4</td>
+                                <td>173</td>
+                                <td>13</td>
+                                <td>16</td>
+                                <td>7</td>
+                                <td class="stat-negative">-3</td>
+                                <td>0.8</td>
+                                <td class="stat-negative">-9</td>
+                                <td>115.9</td>
+                                <td>19%</td>
+                                <td>71%</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>0</td>
+                            </tr>
+                            <tr class="player-row" onclick="navigateToPlayer('くろみすき', '963')">
+                                <td>
+                                    <div class="player-cell">
+                                        <div class="sample-image-placeholder agent-placeholder player-icon-small" data-name="Sample Cypher">
+                                            <span class="sample-image-text">C</span>
+                                        </div>
+                                        <div class="rank-icon-small">❓</div>
+                                        <span class="player-name">くろみすき</span>
+                                        <span class="player-tag">#963</span>
+                                    </div>
+                                </td>
+                                <td>5</td>
+                                <td>169</td>
+                                <td>14</td>
+                                <td>15</td>
+                                <td>2</td>
+                                <td class="stat-negative">-1</td>
+                                <td>0.9</td>
+                                <td class="stat-negative">-10</td>
+                                <td>123.3</td>
+                                <td>26%</td>
+                                <td>58%</td>
+                                <td>2</td>
+                                <td>4</td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Team B -->
+            <div class="team-scoreboard">
+                <div class="team-header">
+                    <h3 class="team-title">Team B</h3>
+                    <span class="team-avg-rank">Avg. Rank: Diamond III</span>
+                </div>
+                <div class="scoreboard-table">
+                    <table class="player-stats-table">
+                        <thead>
+                            <tr>
+                                <th>Match Rank</th>
+                                <th>TRS</th>
+                                <th>ACS</th>
+                                <th>K</th>
+                                <th>D</th>
+                                <th>A</th>
+                                <th>+/-</th>
+                                <th>K/D</th>
+                                <th>DDΔ</th>
+                                <th>ADR</th>
+                                <th>HS%</th>
+                                <th>KAST</th>
+                                <th>FK</th>
+                                <th>FD</th>
+                                <th>MK</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="player-row" onclick="navigateToPlayer('556520', '心臓を捧げ')">
+                                <td>
+                                    <div class="player-cell">
+                                        <div class="sample-image-placeholder agent-placeholder player-icon-small" data-name="Sample Reyna">
+                                            <span class="sample-image-text">R</span>
+                                        </div>
+                                        <div class="rank-icon-small">🔷</div>
+                                        <span class="player-name">556520</span>
+                                        <span class="player-tag">#心臓を捧げ</span>
+                                    </div>
+                                </td>
+                                <td>1</td>
+                                <td>255</td>
+                                <td>21</td>
+                                <td>20</td>
+                                <td>2</td>
+                                <td class="stat-positive">+1</td>
+                                <td>1.1</td>
+                                <td class="stat-positive">+8</td>
+                                <td>158.4</td>
+                                <td>39%</td>
+                                <td>54%</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>1</td>
+                            </tr>
+                            <tr class="player-row" onclick="navigateToPlayer('Roxy', 'myway')">
+                                <td>
+                                    <div class="player-cell">
+                                        <div class="sample-image-placeholder agent-placeholder player-icon-small" data-name="Sample Phoenix">
+                                            <span class="sample-image-text">P</span>
+                                        </div>
+                                        <div class="rank-icon-small">🔷</div>
+                                        <span class="player-name">Roxy</span>
+                                        <span class="player-tag">#myway</span>
+                                    </div>
+                                </td>
+                                <td>2</td>
+                                <td>210</td>
+                                <td>19</td>
+                                <td>16</td>
+                                <td>4</td>
+                                <td class="stat-positive">+3</td>
+                                <td>1.2</td>
+                                <td class="stat-positive">+26</td>
+                                <td>150.2</td>
+                                <td>31%</td>
+                                <td>83%</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>1</td>
+                            </tr>
+                            <tr class="player-row" onclick="navigateToPlayer('morizono taku', '66666')">
+                                <td>
+                                    <div class="player-cell">
+                                        <div class="sample-image-placeholder agent-placeholder player-icon-small" data-name="Sample Omen">
+                                            <span class="sample-image-text">O</span>
+                                        </div>
+                                        <div class="rank-icon-small">💎</div>
+                                        <span class="player-name">morizono taku...</span>
+                                        <span class="player-tag">#66666</span>
+                                    </div>
+                                </td>
+                                <td>3</td>
+                                <td>179</td>
+                                <td>13</td>
+                                <td>21</td>
+                                <td>9</td>
+                                <td class="stat-negative">-8</td>
+                                <td>0.6</td>
+                                <td class="stat-negative">-55</td>
+                                <td>116.8</td>
+                                <td>16%</td>
+                                <td>67%</td>
+                                <td>1</td>
+                                <td>5</td>
+                                <td>0</td>
+                            </tr>
+                            <tr class="player-row" onclick="navigateToPlayer('Yoshiシ', 'POXY')">
+                                <td>
+                                    <div class="player-cell">
+                                        <div class="sample-image-placeholder agent-placeholder player-icon-small" data-name="Sample Jett">
+                                            <span class="sample-image-text">J</span>
+                                        </div>
+                                        <div class="rank-icon-small">🔷</div>
+                                        <span class="player-name">Yoshiシ</span>
+                                        <span class="player-tag">#POXY</span>
+                                    </div>
+                                </td>
+                                <td>4</td>
+                                <td>174</td>
+                                <td>16</td>
+                                <td>17</td>
+                                <td>5</td>
+                                <td class="stat-negative">-1</td>
+                                <td>0.9</td>
+                                <td class="stat-negative">-10</td>
+                                <td>124.2</td>
+                                <td>32%</td>
+                                <td>71%</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>0</td>
+                            </tr>
+                            <tr class="player-row" onclick="navigateToPlayer('夢にときめけ', 'Hyper')">
+                                <td>
+                                    <div class="player-cell">
+                                        <div class="sample-image-placeholder agent-placeholder player-icon-small" data-name="Sample Sova">
+                                            <span class="sample-image-text">S</span>
+                                        </div>
+                                        <div class="rank-icon-small">💎</div>
+                                        <span class="player-name">夢にときめけ...</span>
+                                        <span class="player-tag">#Hyper</span>
+                                    </div>
+                                </td>
+                                <td>5</td>
+                                <td>149</td>
+                                <td>11</td>
+                                <td>20</td>
+                                <td>7</td>
+                                <td class="stat-negative">-9</td>
+                                <td>0.6</td>
+                                <td class="stat-negative">-59</td>
+                                <td>98.0</td>
+                                <td>13%</td>
+                                <td>58%</td>
+                                <td>1</td>
+                                <td>4</td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="about.html">このサイトについて</a>
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="terms.html">利用規約</a>
+            </div>
+            <div class="footer-disclaimer">
+                <p>Mimi Trackerは、Riot Games, Inc.とは提携しておらず、Riot Gamesの公式サービスではありません。</p>
+                <p>VALORANTは、Riot Games, Inc.の登録商標です。</p>
+                <p>&copy; 2024 Mimi Tracker. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ログインモーダル -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2>ログイン</h2>
+            <p class="modal-subtitle">Riotアカウントでログインして自分の戦績を表示</p>
+            <div class="login-note">
+                <p>⚠️ RSO認証機能はAPIキー発行後に実装予定です</p>
+            </div>
+            <button class="login-submit-btn" disabled>Riotアカウントでログイン</button>
+        </div>
+    </div>
+
+    <script>
+        // ログインモーダル
+        function openLoginModal() {
+            document.getElementById('loginModal').style.display = 'flex';
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('loginModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // プレイヤーページへの遷移
+        function navigateToPlayer(gameName, tagLine) {
+            // URLエンコードしてplayer.htmlに遷移
+            const encodedName = encodeURIComponent(gameName);
+            const encodedTag = encodeURIComponent(tagLine);
+            window.location.href = `player.html?name=${encodedName}&tag=${encodedTag}`;
+        }
+
+        // タブ切り替え
+        document.querySelectorAll('.match-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.match-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                // タブ切り替えのロジックは後で実装
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,377 @@
+/* 試合詳細ページ専用スタイル */
+
+/* マッチヘッダー */
+.match-header-section {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 24px;
+    margin: 20px 0;
+    box-shadow: var(--shadow-md);
+}
+
+.match-header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.match-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.match-mode-badge-header {
+    background: linear-gradient(135deg, #ff4655, #ff6b7a);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.match-map-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.match-header-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+.match-score-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.team-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.team-name.team-a {
+    color: var(--accent-secondary);
+}
+
+.team-name.team-b {
+    color: var(--accent-primary);
+}
+
+.score-display {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.score-separator-header {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-secondary);
+}
+
+.match-meta-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.match-date-header,
+.match-duration {
+    font-weight: 500;
+}
+
+.match-header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.average-rank-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.rank-icon-small {
+    font-size: 1rem;
+}
+
+.match-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.action-btn {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.action-btn:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent-primary);
+    transform: scale(1.05);
+}
+
+/* ナビゲーションタブ */
+.match-tabs {
+    display: flex;
+    gap: 8px;
+    margin: 20px 0;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.match-tab {
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 12px 24px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    bottom: -2px;
+}
+
+.match-tab:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.match-tab.active {
+    color: var(--accent-primary);
+    border-bottom-color: var(--accent-primary);
+}
+
+/* ラウンド履歴 */
+.round-history-section {
+    margin: 20px 0;
+}
+
+.round-history-visualizer {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 12px;
+}
+
+.round-item {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.round-item:hover {
+    transform: scale(1.2);
+    z-index: 10;
+}
+
+.round-item.round-win {
+    background: linear-gradient(135deg, var(--accent-secondary), #0fce5b);
+}
+
+.round-item.round-loss {
+    background: linear-gradient(135deg, var(--accent-primary), #ff6b7a);
+}
+
+.round-item::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+}
+
+/* スコアボード */
+.scoreboard-section {
+    margin: 20px 0;
+}
+
+.team-scoreboard {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-md);
+}
+
+.team-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.team-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.team-avg-rank {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.scoreboard-table {
+    overflow-x: auto;
+}
+
+.player-stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+}
+
+.player-stats-table thead {
+    background: var(--bg-tertiary);
+}
+
+.player-stats-table th {
+    padding: 12px 8px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.player-stats-table th:first-child {
+    min-width: 200px;
+}
+
+.player-stats-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.player-stats-table tbody tr {
+    transition: all 0.2s ease;
+}
+
+.player-stats-table tbody tr:hover {
+    background: var(--bg-tertiary);
+}
+
+.player-row {
+    cursor: pointer;
+}
+
+.player-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.player-icon-small {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.player-icon-small .sample-image-text {
+    font-size: 0.7rem;
+}
+
+.player-name {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.player-tag {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.stat-positive {
+    color: var(--accent-secondary);
+    font-weight: 600;
+}
+
+.stat-negative {
+    color: var(--accent-primary);
+    font-weight: 600;
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+    .match-header-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .match-header-center {
+        width: 100%;
+    }
+
+    .match-header-right {
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    .match-tabs {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .match-tab {
+        white-space: nowrap;
+        padding: 12px 16px;
+    }
+
+    .scoreboard-table {
+        font-size: 0.75rem;
+    }
+
+    .player-stats-table th,
+    .player-stats-table td {
+        padding: 8px 4px;
+    }
+
+    .player-cell {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+}

@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mimi Tracker - VALORANT 戦績 - moe pi#moe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="player.css">
+</head>
+<body>
+    <!-- ナビゲーションバー -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <span class="logo-text">Mimi Tracker</span>
+                </a>
+            </div>
+            <div class="nav-center">
+                <a href="index.html" class="nav-item">検索</a>
+                <a href="shop.html" class="nav-item">ショップ</a>
+            </div>
+            <div class="nav-right">
+                <button class="login-btn" onclick="openLoginModal()">ログイン</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sample Data Notice -->
+        <div class="sample-data-notice">
+            <span class="sample-data-badge">Sample Data</span>
+            <span class="sample-data-text">このサイトはプロトタイプです。表示されているデータはサンプルデータです。</span>
+        </div>
+        
+        <!-- プロフィールバナー -->
+        <section class="profile-banner-section">
+            <div class="profile-banner" id="profileBanner" style="background-image: url('https://images.unsplash.com/photo-1557683316-973673baf926?w=1200&h=300&fit=crop');">
+                <div class="banner-overlay"></div>
+                <button class="banner-change-btn" onclick="openBannerModal()" title="バナーを変更">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    バナー変更
+                </button>
+            </div>
+        </section>
+
+        <!-- プレイヤー情報セクション -->
+        <section class="player-profile-section">
+            <div class="player-profile-card">
+                <div class="player-avatar-section">
+                    <div class="player-avatar-wrapper">
+                        <div class="sample-image-placeholder agent-placeholder player-avatar-img" data-name="Sample Player">
+                            <span class="sample-image-text">Sample Player</span>
+                        </div>
+                    </div>
+                    <div class="player-level-badge">レベル 45</div>
+                </div>
+                
+                <div class="player-info-section">
+                    <div class="player-name-section">
+                        <h1 class="player-name">moe pi</h1>
+                        <p class="player-tag">#moe</p>
+                    </div>
+                    
+                    <div class="rank-display-section">
+                        <div class="rank-card current-rank-card">
+                            <div class="rank-label">現在ランク</div>
+                            <div class="rank-visual">
+                                <img src="https://tracker.gg/images/valorant/ranks/Gold2.png" alt="Gold 2" class="rank-icon-img" onerror="this.onerror=null; this.style.display='none';">
+                                <div class="rank-text-wrapper">
+                                    <div class="rank-name">ゴールド 2</div>
+                                    <div class="rank-rr">75 / 100 RR</div>
+                                </div>
+                            </div>
+                            <div class="rank-progress-bar">
+                                <div class="rank-progress-fill" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="rank-card peak-rank-card">
+                            <div class="rank-label">過去最高ランク</div>
+                            <div class="rank-visual">
+                                <img src="https://tracker.gg/images/valorant/ranks/Platinum3.png" alt="Platinum 3" class="rank-icon-img" onerror="this.onerror=null; this.style.display='none';">
+                                <div class="rank-text-wrapper">
+                                    <div class="rank-name peak-rank-name">プラチナ 3</div>
+                                    <div class="rank-rr peak-rank-rr">最高 RR: 98</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tracker Score & 味方運 -->
+        <section class="performance-section">
+            <div class="tracker-score-card">
+                <div class="score-header">
+                    <h3 class="score-title">Tracker Score</h3>
+                    <div class="score-value" id="trackerScore">1,245</div>
+                </div>
+                <div class="score-breakdown">
+                    <div class="score-item">
+                        <span class="score-item-label">パフォーマンス</span>
+                        <div class="score-item-bar">
+                            <div class="score-item-fill performance-fill" style="width: 78%"></div>
+                        </div>
+                        <span class="score-item-value">78%</span>
+                    </div>
+                    <div class="score-item">
+                        <span class="score-item-label">一貫性</span>
+                        <div class="score-item-bar">
+                            <div class="score-item-fill consistency-fill" style="width: 65%"></div>
+                        </div>
+                        <span class="score-item-value">65%</span>
+                    </div>
+                    <div class="score-item">
+                        <span class="score-item-label">影響力</span>
+                        <div class="score-item-bar">
+                            <div class="score-item-fill impact-fill" style="width: 82%"></div>
+                        </div>
+                        <span class="score-item-value">82%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="teammate-luck-card">
+                <div class="luck-header">
+                    <h3 class="luck-title">味方運</h3>
+                    <div class="luck-indicator" id="luckIndicator">
+                        <span class="luck-icon">🎲</span>
+                        <span class="luck-status" id="luckStatus">普通</span>
+                    </div>
+                </div>
+                <div class="luck-details">
+                    <div class="luck-stat">
+                        <span class="luck-stat-label">平均チームK/D</span>
+                        <span class="luck-stat-value">1.18</span>
+                    </div>
+                    <div class="luck-stat">
+                        <span class="luck-stat-label">平均チームスコア</span>
+                        <span class="luck-stat-value">182</span>
+                    </div>
+                    <div class="luck-stat">
+                        <span class="luck-stat-label">クラッチ勝率</span>
+                        <span class="luck-stat-value">42%</span>
+                    </div>
+                </div>
+                <div class="luck-message" id="luckMessage">
+                    あなたの味方は平均的な実力です。チームワークが鍵となります。
+                </div>
+            </div>
+        </section>
+
+        <!-- 統計サマリー -->
+        <section class="stats-summary-section">
+            <div class="stats-grid">
+                <div class="stat-card-large">
+                    <div class="stat-header-with-help">
+                        <div class="stat-icon">💥</div>
+                        <div class="stat-content">
+                            <div class="stat-label">
+                                ADR
+                                <button class="help-btn" data-tooltip="ADR: 1ラウンドの平均ダメージです">?</button>
+                            </div>
+                            <div class="stat-value">142.5</div>
+                            <div class="stat-percentile top-percentile">上位 23%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card-large">
+                    <div class="stat-header-with-help">
+                        <div class="stat-icon">⚔️</div>
+                        <div class="stat-content">
+                            <div class="stat-label">
+                                K/D
+                                <button class="help-btn" data-tooltip="K/D: kill数をdeath数で割った値です">?</button>
+                            </div>
+                            <div class="stat-value">1.24</div>
+                            <div class="stat-percentile top-percentile">上位 31%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card-large">
+                    <div class="stat-header-with-help">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-content">
+                            <div class="stat-label">
+                                HS率
+                                <button class="help-btn" data-tooltip="HS率: スナイパー、ショットガン、マシンガンは除いた値が算出されます">?</button>
+                            </div>
+                            <div class="stat-value">23.5%</div>
+                            <div class="stat-percentile top-percentile">上位 18%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card-large">
+                    <div class="stat-header-with-help">
+                        <div class="stat-icon">🏆</div>
+                        <div class="stat-content">
+                            <div class="stat-label">
+                                勝率
+                                <button class="help-btn" data-tooltip="勝率: 勝利したマッチ数 / 総マッチ数">?</button>
+                            </div>
+                            <div class="stat-value win-rate">58.3%</div>
+                            <div class="stat-percentile top-percentile">上位 27%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 詳細統計 -->
+        <section class="detailed-stats-section">
+            <h2 class="section-title-main">詳細統計</h2>
+            <div class="detailed-stats-grid">
+                <div class="detailed-stat-item">
+                    <div class="stat-name-with-help">
+                        <span class="detailed-stat-name">勝率</span>
+                        <button class="help-btn-small" data-tooltip="勝率: 勝利したマッチ数 / 総マッチ数">?</button>
+                    </div>
+                    <div class="stat-value-with-percentile">
+                        <span class="detailed-stat-number">58.3%</span>
+                        <span class="stat-percentile-small top-percentile">上位 27%</span>
+                    </div>
+                </div>
+                <div class="detailed-stat-item">
+                    <div class="stat-name-with-help">
+                        <span class="detailed-stat-name">勝利数</span>
+                        <button class="help-btn-small" data-tooltip="勝利数: 勝利したマッチの総数">?</button>
+                    </div>
+                    <div class="stat-value-with-percentile">
+                        <span class="detailed-stat-number">74</span>
+                        <span class="stat-percentile-small top-percentile">上位 27%</span>
+                    </div>
+                </div>
+                <div class="detailed-stat-item">
+                    <div class="stat-name-with-help">
+                        <span class="detailed-stat-name">K/D</span>
+                        <button class="help-btn-small" data-tooltip="K/D: kill数をdeath数で割った値です">?</button>
+                    </div>
+                    <div class="stat-value-with-percentile">
+                        <span class="detailed-stat-number">1.24</span>
+                        <span class="stat-percentile-small top-percentile">上位 31%</span>
+                    </div>
+                </div>
+                <div class="detailed-stat-item">
+                    <div class="stat-name-with-help">
+                        <span class="detailed-stat-name">KAST</span>
+                        <button class="help-btn-small" data-tooltip="KAST: Kill（キル）、Assist（アシスト）、Survived（生存）、Traded（トレード）の頭文字です。デスしても味方が敵を倒してくれた（トレード）り、スキルで味方を助けたりすれば数値が上がります。つまり、「無駄死にせずに仕事をしたラウンドの多さ」を示す指標です。">?</button>
+                    </div>
+                    <div class="stat-value-with-percentile">
+                        <span class="detailed-stat-number">68.5%</span>
+                        <span class="stat-percentile-small top-percentile">上位 35%</span>
+                    </div>
+                </div>
+                <div class="detailed-stat-item">
+                    <div class="stat-name-with-help">
+                        <span class="detailed-stat-name">DDΔ</span>
+                        <button class="help-btn-small" data-tooltip="DDΔ: 自分が与えたダメージと、受けたダメージの差です">?</button>
+                    </div>
+                    <div class="stat-value-with-percentile">
+                        <span class="detailed-stat-number">+15.2</span>
+                        <span class="stat-percentile-small top-percentile">上位 28%</span>
+                    </div>
+                </div>
+                <div class="detailed-stat-item">
+                    <div class="stat-name-with-help">
+                        <span class="detailed-stat-name">バトルスコア</span>
+                        <button class="help-btn-small" data-tooltip="バトルスコア: マッチごとの平均スコア">?</button>
+                    </div>
+                    <div class="stat-value-with-percentile">
+                        <span class="detailed-stat-number">185</span>
+                        <span class="stat-percentile-small top-percentile">上位 25%</span>
+                    </div>
+                </div>
+                <div class="detailed-stat-item">
+                    <div class="stat-name-with-help">
+                        <span class="detailed-stat-name">ADR</span>
+                        <button class="help-btn-small" data-tooltip="ADR: 1ラウンドの平均ダメージです">?</button>
+                    </div>
+                    <div class="stat-value-with-percentile">
+                        <span class="detailed-stat-number">142.5</span>
+                        <span class="stat-percentile-small top-percentile">上位 23%</span>
+                    </div>
+                </div>
+                <div class="detailed-stat-item">
+                    <div class="stat-name-with-help">
+                        <span class="detailed-stat-name">HS率</span>
+                        <button class="help-btn-small" data-tooltip="HS率: スナイパー、ショットガン、マシンガンは除いた値が算出されます">?</button>
+                    </div>
+                    <div class="stat-value-with-percentile">
+                        <span class="detailed-stat-number">23.5%</span>
+                        <span class="stat-percentile-small top-percentile">上位 18%</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 最近のマッチ履歴 -->
+        <section class="match-history-section">
+            <h2 class="section-title-main">最近のマッチ</h2>
+            <div class="matches-list">
+                <!-- マッチ1 -->
+                <div class="match-card-enhanced match-win" onclick="window.location.href='match-detail.html?match=1'" style="cursor: pointer;">
+                    <div class="match-visual-section">
+                        <div class="match-agent-img-wrapper">
+                            <div class="sample-image-placeholder agent-placeholder" data-name="Sample Jett">
+                                <span class="sample-image-text">Sample Jett</span>
+                            </div>
+                        </div>
+                        <div class="match-map-img-wrapper">
+                            <div class="sample-image-placeholder map-placeholder" data-name="Sample Bind">
+                                <span class="sample-image-text">Sample Bind</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-info-section">
+                        <div class="match-header-enhanced">
+                            <div class="match-result-badge win">勝利</div>
+                            <div class="match-mode-badge">コンペティティブ</div>
+                            <div class="match-date-text">2024年1月15日 20:30</div>
+                        </div>
+                        <div class="match-score-enhanced">
+                            <span class="score-value-win">13</span>
+                            <span class="score-separator">-</span>
+                            <span class="score-value-loss">8</span>
+                        </div>
+                        <div class="match-stats-enhanced">
+                            <div class="match-stat-item">
+                                <span class="match-stat-label">K/D/A</span>
+                                <span class="match-stat-value">24/12/8</span>
+                            </div>
+                            <div class="match-stat-item">
+                                <span class="match-stat-label">スコア</span>
+                                <span class="match-stat-value">285</span>
+                            </div>
+                            <div class="match-stat-item">
+                                <span class="match-stat-label">エージェント</span>
+                                <span class="match-stat-value agent-name-jett">Jett</span>
+                            </div>
+                            <div class="match-stat-item">
+                                <span class="match-stat-label">マップ</span>
+                                <span class="match-stat-value">Bind</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- マッチ2 -->
+                <div class="match-card-enhanced match-loss" onclick="window.location.href='match-detail.html?match=2'" style="cursor: pointer;">
+                    <div class="match-visual-section">
+                        <div class="match-agent-img-wrapper">
+                            <div class="sample-image-placeholder agent-placeholder" data-name="Sample Sage">
+                                <span class="sample-image-text">Sample Sage</span>
+                            </div>
+                        </div>
+                        <div class="match-map-img-wrapper">
+                            <div class="sample-image-placeholder map-placeholder" data-name="Sample Ascent">
+                                <span class="sample-image-text">Sample Ascent</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-info-section">
+                        <div class="match-header-enhanced">
+                            <div class="match-result-badge loss">敗北</div>
+                            <div class="match-mode-badge">コンペティティブ</div>
+                            <div class="match-date-text">2024年1月15日 18:15</div>
+                        </div>
+                        <div class="match-score-enhanced">
+                            <span class="score-value-loss">9</span>
+                            <span class="score-separator">-</span>
+                            <span class="score-value-win">13</span>
+                        </div>
+                        <div class="match-stats-enhanced">
+                            <div class="match-stat-item">
+                                <span class="match-stat-label">K/D/A</span>
+                                <span class="match-stat-value">15/18/6</span>
+                            </div>
+                            <div class="match-stat-item">
+                                <span class="match-stat-label">スコア</span>
+                                <span class="match-stat-value">195</span>
+                            </div>
+                            <div class="match-stat-item">
+                                <span class="match-stat-label">エージェント</span>
+                                <span class="match-stat-value agent-name-sage">Sage</span>
+                            </div>
+                            <div class="match-stat-item">
+                                <span class="match-stat-label">マップ</span>
+                                <span class="match-stat-value">Ascent</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- マッチ3 -->
+                <div class="match-card-enhanced match-win" onclick="window.location.href='match-detail.html?match=3'" style="cursor: pointer;">
+                    <div class="match-visual-section">
+                        <div class="match-agent-img-wrapper">
+                            <div class="sample-image-placeholder agent-placeholder" data-name="Sample Reyna">
+                                <span class="sample-image-text">Sample Reyna</span>
+                            </div>
+                        </div>
+                        <div class="match-map-img-wrapper">
+                            <div class="sample-image-placeholder map-placeholder" data-name="Sample Haven">
+                                <span class="sample-image-text">Sample Haven</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="match-info-section">
+                        <div class="match-header-enhanced">
+                            <div class="match-result-badge win">勝利</div>
+                            <div class="match-mode-badge">コンペティティブ</div>
+                            <div class="match-date-text">2024年1月15日 16:45</div>
+                        </div>
+                        <div class="match-score-enhanced">
+                            <span class="score-value-win">13</span>
+                            <span class="score-separator">-</span>
+                            <span class="score-value-loss">11</span>
+                        </div>
+                        <div class="match-stats-enhanced">
+                            <div class="match-stat-item">
+                                <span class="match-stat-label">K/D/A</span>
+                                <span class="match-stat-value">20/15/10</span>
+                            </div>
+                            <div class="match-stat-item">
+                                <span class="match-stat-label">スコア</span>
+                                <span class="match-stat-value">245</span>
+                            </div>
+                            <div class="match-stat-item">
+                                <span class="match-stat-label">エージェント</span>
+                                <span class="match-stat-value agent-name-reyna">Reyna</span>
+                            </div>
+                            <div class="match-stat-item">
+                                <span class="match-stat-label">マップ</span>
+                                <span class="match-stat-value">Haven</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- エージェント使用率 TOP3 -->
+        <section class="agent-stats-section">
+            <h2 class="section-title-main">最も使っているエージェント TOP3</h2>
+            <div class="top-agents-grid">
+                <div class="top-agent-card">
+                    <div class="top-agent-header">
+                        <div class="sample-image-placeholder agent-placeholder top-agent-icon" data-name="Sample Jett">
+                            <span class="sample-image-text">Sample Jett</span>
+                        </div>
+                        <div class="top-agent-name-section">
+                            <h3 class="top-agent-name">Jett</h3>
+                            <div class="top-agent-usage">使用率: 35%</div>
+                        </div>
+                    </div>
+                    <div class="top-agent-stats">
+                        <div class="top-agent-stat-item">
+                            <span class="top-agent-stat-label">マッチ数</span>
+                            <span class="top-agent-stat-value">45</span>
+                        </div>
+                        <div class="top-agent-stat-item">
+                            <span class="top-agent-stat-label">勝率</span>
+                            <span class="top-agent-stat-value">62.2%</span>
+                        </div>
+                        <div class="top-agent-stat-item">
+                            <span class="top-agent-stat-label">K/D</span>
+                            <span class="top-agent-stat-value">1.35</span>
+                        </div>
+                        <div class="top-agent-stat-item">
+                            <span class="top-agent-stat-label">ADR</span>
+                            <span class="top-agent-stat-value">148.5</span>
+                        </div>
+                        <div class="top-agent-stat-item">
+                            <span class="top-agent-stat-label">ACS</span>
+                            <span class="top-agent-stat-value">195</span>
+                        </div>
+                        <div class="top-agent-stat-item">
+                            <span class="top-agent-stat-label">DDΔ</span>
+                            <span class="top-agent-stat-value">+18.2</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="top-agent-card">
+                    <div class="top-agent-header">
+                        <div class="sample-image-placeholder agent-placeholder top-agent-icon" data-name="Sample Reyna">
+                            <span class="sample-image-text">Sample Reyna</span>
+                        </div>
+                        <div class="top-agent-name-section">
+                            <h3 class="top-agent-name">Reyna</h3>
+                            <div class="top-agent-usage">使用率: 28%</div>
+                        </div>
+                    </div>
+                    <div class="top-agent-stats">
+                        <div class="top-agent-stat-item">
+                            <span class="top-agent-stat-label">マッチ数</span>
+                            <span class="top-agent-stat-value">36</span>
+                        </div>
+                        <div class="top-agent-stat-item">
+                            <span class="top-agent-stat-label">勝率</span>
+                            <span class="top-agent-stat-value">55.6%</span>
+                        </div>
+                        <div class="top-agent-stat-item">
+                            <span class="top-agent-stat-label">K/D</span>
+                            <span class="top-agent-stat-value">1.28</span>
+                        </div>
+                        <div class="top-agent-stat-item">
+                            <span class="top-agent-stat-label">ADR</span>
+                            <span class="top-agent-stat-value">138.2</span>
+                        </div>
+                        <div class="top-agent-stat-item">
+                            <span class="top-agent-stat-label">ACS</span>
+                            <span class="top-agent-stat-value">182</span>
+                        </div>
+                        <div class="top-agent-stat-item">
+                            <span class="top-agent-stat-label">DDΔ</span>
+                            <span class="top-agent-stat-value">+12.5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="top-agent-card">
+                    <div class="top-agent-header">
+                        <div class="sample-image-placeholder agent-placeholder top-agent-icon" data-name="Sample Sage">
+                            <span class="sample-image-text">Sample Sage</span>
+                        </div>
+                        <div class="top-agent-name-section">
+                            <h3 class="top-agent-name">Sage</h3>
+                            <div class="top-agent-usage">使用率: 20%</div>
+                        </div>
+                    </div>
+                    <div class="top-agent-stats">
+                        <div class="top-agent-stat-item">
+                            <span class="top-agent-stat-label">マッチ数</span>
+                            <span class="top-agent-stat-value">25</span>
+                        </div>
+                        <div class="top-agent-stat-item">
+                            <span class="top-agent-stat-label">勝率</span>
+                            <span class="top-agent-stat-value">52.0%</span>
+                        </div>
+                        <div class="top-agent-stat-item">
+                            <span class="top-agent-stat-label">K/D</span>
+                            <span class="top-agent-stat-value">1.12</span>
+                        </div>
+                        <div class="top-agent-stat-item">
+                            <span class="top-agent-stat-label">ADR</span>
+                            <span class="top-agent-stat-value">125.8</span>
+                        </div>
+                        <div class="top-agent-stat-item">
+                            <span class="top-agent-stat-label">ACS</span>
+                            <span class="top-agent-stat-value">168</span>
+                        </div>
+                        <div class="top-agent-stat-item">
+                            <span class="top-agent-stat-label">DDΔ</span>
+                            <span class="top-agent-stat-value">+8.5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- バナー変更モーダル -->
+    <div id="bannerModal" class="modal">
+        <div class="modal-content banner-modal-content">
+            <span class="close" onclick="closeBannerModal()">&times;</span>
+            <h2>バナーを変更</h2>
+            <p class="modal-subtitle">お気に入りのバナーを選択してください</p>
+            <div class="banner-grid">
+                <div class="banner-option" onclick="changeBanner('https://images.unsplash.com/photo-1557683316-973673baf926?w=1200&h=300&fit=crop')">
+                    <img src="https://images.unsplash.com/photo-1557683316-973673baf926?w=400&h=100&fit=crop" alt="Banner 1">
+                    <span>バナー 1</span>
+                </div>
+                <div class="banner-option" onclick="changeBanner('https://images.unsplash.com/photo-1557682250-33bd709cbe85?w=1200&h=300&fit=crop')">
+                    <img src="https://images.unsplash.com/photo-1557682250-33bd709cbe85?w=400&h=100&fit=crop" alt="Banner 2">
+                    <span>バナー 2</span>
+                </div>
+                <div class="banner-option" onclick="changeBanner('https://images.unsplash.com/photo-1557683311-eac922347aa1?w=1200&h=300&fit=crop')">
+                    <img src="https://images.unsplash.com/photo-1557683311-eac922347aa1?w=400&h=100&fit=crop" alt="Banner 3">
+                    <span>バナー 3</span>
+                </div>
+                <div class="banner-option" onclick="changeBanner('https://images.unsplash.com/photo-1557682250-33bd709cbe85?w=1200&h=300&fit=crop')">
+                    <img src="https://images.unsplash.com/photo-1557682250-33bd709cbe85?w=400&h=100&fit=crop" alt="Banner 4">
+                    <span>バナー 4</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ログインモーダル -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2>ログイン</h2>
+            <p class="modal-subtitle">Riotアカウントでログインして自分の戦績を表示</p>
+            <form class="login-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="username">ユーザー名</label>
+                    <input type="text" id="username" name="username" placeholder="プレイヤー名#タグライン" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">パスワード</label>
+                    <input type="password" id="password" name="password" placeholder="パスワード" required>
+                </div>
+                <button type="submit" class="login-submit-btn">ログイン</button>
+                <p class="login-note">※ RSO認証機能はAPIキー発行後に実装予定です</p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openLoginModal() {
+            document.getElementById('loginModal').style.display = 'flex';
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            alert('RSO認証機能はAPIキー発行後に実装予定です');
+            closeLoginModal();
+        }
+
+        function openBannerModal() {
+            document.getElementById('bannerModal').style.display = 'flex';
+        }
+
+        function closeBannerModal() {
+            document.getElementById('bannerModal').style.display = 'none';
+        }
+
+        function changeBanner(url) {
+            document.getElementById('profileBanner').style.backgroundImage = `url('${url}')`;
+            localStorage.setItem('selectedBanner', url);
+            closeBannerModal();
+        }
+
+        // 保存されたバナーを読み込む
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedBanner = localStorage.getItem('selectedBanner');
+            if (savedBanner) {
+                document.getElementById('profileBanner').style.backgroundImage = `url('${savedBanner}')`;
+            }
+            
+            // 味方運の計算と表示
+            calculateTeammateLuck();
+            
+            // 画像のプリロード
+            setTimeout(preloadImages, 500);
+        });
+
+        // 画像エラーハンドリング
+        function handleImageError(img, name, type) {
+            if (img.dataset.fallbackUsed) return;
+            img.dataset.fallbackUsed = 'true';
+            
+            const colors = {
+                'Jett': '60a5fa',
+                'Sage': '34d399',
+                'Reyna': 'f472b6',
+                'Omen': 'a78bfa',
+                'Phoenix': 'fb923c',
+                'Bind': 'f59e0b',
+                'Ascent': '6366f1',
+                'Haven': '10b981',
+                'Split': '8b5cf6',
+                'Icebox': '06b6d4'
+            };
+            const color = colors[name] || '666666';
+            const width = type === 'agent' ? (img.classList.contains('top-agent-icon') ? 64 : 80) : 140;
+            const height = type === 'agent' ? (img.classList.contains('top-agent-icon') ? 64 : 80) : 80;
+            
+            // プレースホルダー画像を生成
+            try {
+                const canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.fillStyle = '#' + color;
+                ctx.fillRect(0, 0, width, height);
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold ' + Math.max(12, width / 8) + 'px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(name, width / 2, height / 2);
+                img.src = canvas.toDataURL();
+            } catch (e) {
+                // Canvasが使えない場合はプレースホルダーURLを使用
+                img.src = `https://via.placeholder.com/${width}x${height}/${color}/ffffff?text=${name}`;
+            }
+        }
+        
+        // 画像のプリロードとフォールバック
+        function preloadImages() {
+            const images = document.querySelectorAll('img[src*="valorant-api.com"]');
+            images.forEach(img => {
+                const testImg = new Image();
+                testImg.onerror = function() {
+                    const name = img.alt || 'Unknown';
+                    let type = 'map';
+                    if (img.classList.contains('match-agent-img') || img.classList.contains('top-agent-icon') || img.classList.contains('player-avatar-img')) {
+                        type = 'agent';
+                    }
+                    handleImageError(img, name, type);
+                };
+                testImg.onload = function() {
+                    // 画像が読み込めた場合は何もしない
+                };
+                testImg.src = img.src;
+            });
+        }
+
+        // 味方運の計算
+        function calculateTeammateLuck() {
+            // ダミーデータ（実際のAPIから取得するデータ）
+            const avgTeamKD = 1.18;
+            const avgTeamScore = 182;
+            const clutchWinRate = 0.42;
+            
+            // 味方運スコアの計算（0-100）
+            let luckScore = (avgTeamKD * 30) + (avgTeamScore / 3) + (clutchWinRate * 40);
+            luckScore = Math.min(100, Math.max(0, luckScore));
+            
+            // 味方運の判定
+            let luckStatus, luckMessage, luckColor;
+            if (luckScore >= 70) {
+                luckStatus = '良い';
+                luckMessage = 'あなたの味方は優秀です！チームワークを活かして勝利を掴みましょう。';
+                luckColor = 'var(--accent-secondary)';
+            } else if (luckScore >= 50) {
+                luckStatus = '普通';
+                luckMessage = 'あなたの味方は平均的な実力です。チームワークが鍵となります。';
+                luckColor = 'var(--accent-warning)';
+            } else {
+                luckStatus = '悪い';
+                luckMessage = 'あなたの味方はやや弱めです。個人のパフォーマンスが重要になります。';
+                luckColor = 'var(--accent-primary)';
+            }
+            
+            // UI更新
+            document.getElementById('luckStatus').textContent = luckStatus;
+            document.getElementById('luckStatus').style.color = luckColor;
+            document.getElementById('luckMessage').textContent = luckMessage;
+            document.getElementById('luckMessage').style.borderLeftColor = luckColor;
+        }
+
+        window.onclick = function(event) {
+            const loginModal = document.getElementById('loginModal');
+            const bannerModal = document.getElementById('bannerModal');
+            if (event.target == loginModal) {
+                closeLoginModal();
+            }
+            if (event.target == bannerModal) {
+                closeBannerModal();
+            }
+        }
+
+        // ツールチップの表示
+        document.addEventListener('DOMContentLoaded', function() {
+            const helpButtons = document.querySelectorAll('.help-btn, .help-btn-small');
+            helpButtons.forEach(btn => {
+                btn.addEventListener('mouseenter', function(e) {
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'tooltip';
+                    tooltip.textContent = this.getAttribute('data-tooltip');
+                    document.body.appendChild(tooltip);
+                    
+                    const rect = this.getBoundingClientRect();
+                    const tooltipRect = tooltip.getBoundingClientRect();
+                    
+                    // ツールチップの位置を計算（右下に配置）
+                    let top = rect.bottom + 8;
+                    let left = rect.right - tooltipRect.width;
+                    
+                    // 画面外に出ないように調整
+                    if (left < 10) left = 10;
+                    if (top + tooltipRect.height > window.innerHeight - 10) {
+                        top = rect.top - tooltipRect.height - 8;
+                    }
+                    
+                    tooltip.style.top = top + 'px';
+                    tooltip.style.left = left + 'px';
+                    
+                    this._tooltip = tooltip;
+                });
+                
+                btn.addEventListener('mouseleave', function() {
+                    if (this._tooltip) {
+                        this._tooltip.remove();
+                        this._tooltip = null;
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- フッター -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="about.html">このサイトについて</a>
+                <a href="terms.html">利用規約</a>
+                <a href="privacy.html">プライバシーポリシー</a>
+            </div>
+            <div class="footer-text">
+                <p>Mimi Trackerは、Riot Games, Inc.とは提携しておらず、Riot Gamesの公式サービスではありません。</p>
+                <p>VALORANTは、Riot Games, Inc.の登録商標です。</p>
+                <p>&copy; 2024 Mimi Tracker. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

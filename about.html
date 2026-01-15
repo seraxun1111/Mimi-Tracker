@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>このサイトについて | Mimi Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ナビゲーションバー -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <span class="logo-text">Mimi Tracker</span>
+                </a>
+            </div>
+            <div class="nav-center">
+                <a href="index.html" class="nav-item">検索</a>
+                <a href="shop.html" class="nav-item">ショップ</a>
+            </div>
+            <div class="nav-right">
+                <button class="login-btn" onclick="openLoginModal()">ログイン</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sample Data Notice -->
+        <div class="sample-data-notice">
+            <span class="sample-data-badge">Sample Data</span>
+            <span class="sample-data-text">このサイトはプロトタイプです。表示されているデータはサンプルデータです。</span>
+        </div>
+        
+        <section class="legal-section">
+            <h1 class="legal-title">このサイトについて</h1>
+
+            <div class="legal-content">
+                <h2>Mimi Trackerとは</h2>
+                <p>Mimi Trackerは、Riot Games APIを使用してVALORANTの戦績情報を詳細に表示する非公式の戦績トラッカーです。プレイヤーは、自分の戦績を分析し、パフォーマンスを向上させるための情報を得ることができます。</p>
+
+                <h2>主な機能</h2>
+                <ul>
+                    <li><strong>RSO認証</strong>: Riot Sign Onによるログイン機能（必須）</li>
+                    <li><strong>戦績表示</strong>: ログインしたユーザーの詳細な戦績情報を表示</li>
+                    <li><strong>詳細統計</strong>: K/D、ADR、KAST、DDΔ、HS率などの詳細な統計情報</li>
+                    <li><strong>マッチ履歴</strong>: 最近のマッチの詳細な情報を表示</li>
+                    <li><strong>エージェント分析</strong>: 最も使用しているエージェントTOP3の統計</li>
+                    <li><strong>Tracker Score</strong>: パフォーマンス、一貫性、影響力を数値化</li>
+                    <li><strong>味方運</strong>: チームメイトの実力を分析</li>
+                    <li><strong>ショップ情報</strong>: 今日のショップアイテムを表示（ログイン必須）</li>
+                </ul>
+
+                <h2>技術スタック</h2>
+                <ul>
+                    <li><strong>フロントエンド</strong>: HTML5, CSS3, JavaScript</li>
+                    <li><strong>API</strong>: Riot Games API (VALORANT API)</li>
+                    <li><strong>バックエンド</strong>: Python (将来実装予定)</li>
+                </ul>
+
+                <h2>データソース</h2>
+                <p>当サービスは、以下のソースからデータを取得しています：</p>
+                <ul>
+                    <li><strong>Riot Games API</strong>: 戦績、ランク、マッチ履歴などのゲームデータ</li>
+                    <li><strong>Valorant-API.com</strong>: エージェント、マップ、武器スキンの画像</li>
+                </ul>
+
+                <h2>免責事項</h2>
+                <p>当サービスは、Riot Games, Inc.とは提携しておらず、Riot Gamesの公式サービスではありません。VALORANTは、Riot Games, Inc.の登録商標です。</p>
+
+                <h2>認証について</h2>
+                <p><strong>重要</strong>: VALORANT APIの仕様により、個人の戦績データ（マッチ履歴、統計情報など）を取得するには、RSO（Riot Sign On）認証が必須です。ユーザーは自分のRiotアカウントでログインし、データ共有に明示的に同意する必要があります。</p>
+
+                <h2>今後の予定</h2>
+                <ul>
+                    <li><strong>RSO（Riot Sign On）認証機能の実装</strong>（必須）</li>
+                    <li>プロフィールの公開/非公開設定機能</li>
+                    <li>より詳細な統計分析機能</li>
+                    <li>ランキング機能</li>
+                    <li>マッチ詳細の分析機能</li>
+                </ul>
+
+                <h2>お問い合わせ</h2>
+                <p>ご質問やご意見がございましたら、お気軽にお問い合わせください。</p>
+            </div>
+
+            <div class="legal-footer">
+                <a href="index.html" class="back-link">← メインページに戻る</a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function openLoginModal() {
+            // ログインモーダルは別ページでは開かない
+        }
+    </script>
+</body>
+</html>

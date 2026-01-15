@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mimi Tracker - VALORANT 戦績検索</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="search.css">
+</head>
+<body>
+    <!-- ナビゲーションバー -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <img src="https://tracker.gg/images/valorant/logo-valorant.svg" alt="VALORANT" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="logo-text">Mimi Tracker</span>
+                </a>
+            </div>
+            <div class="nav-center">
+                <a href="index.html" class="nav-item active">検索</a>
+                <a href="shop.html" class="nav-item">ショップ</a>
+            </div>
+            <div class="nav-right">
+                <button class="login-btn" onclick="openLoginModal()">ログイン</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sample Data Notice -->
+        <div class="sample-data-notice">
+            <span class="sample-data-badge">Sample Data</span>
+            <span class="sample-data-text">このサイトはプロトタイプです。表示されているデータはサンプルデータです。</span>
+        </div>
+        
+        <!-- ヒーローセクション -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">VALORANT 戦績を追跡</h1>
+                <p class="hero-subtitle">RSO認証でログインして自分の戦績を表示</p>
+                
+                <!-- 検索フォーム -->
+                <div class="search-container">
+                    <form class="search-form" onsubmit="handleSearch(event)">
+                        <div class="search-inputs">
+                            <div class="input-group">
+                                <label for="gameName">プレイヤー名</label>
+                                <input 
+                                    type="text" 
+                                    id="gameName" 
+                                    name="gameName" 
+                                    placeholder="例: moe pi" 
+                                    required
+                                    value="moe pi"
+                                >
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="tagLine">タグライン</label>
+                                <input 
+                                    type="text" 
+                                    id="tagLine" 
+                                    name="tagLine" 
+                                    placeholder="例: moe" 
+                                    required
+                                    value="moe"
+                                >
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="region">地域</label>
+                                <select id="region" name="region">
+                                    <option value="ap" selected>AP</option>
+                                    <option value="na">NA</option>
+                                    <option value="eu">EU</option>
+                                    <option value="kr">KR</option>
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="search-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <path d="m21 21-4.35-4.35"></path>
+                                </svg>
+                                検索
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 地域ランキング -->
+        <section class="ranking-section">
+            <div class="section-header">
+                <h2 class="section-title">地域ランキング トッププレイヤー</h2>
+                <p class="section-subtitle">各地域のランキング1位プレイヤー</p>
+            </div>
+            
+            <div class="ranking-grid">
+                <div class="ranking-card" onclick="searchPlayer('TenZ', 'SEN')">
+                    <div class="ranking-badge apac-badge">
+                        <span class="badge-icon">🏆</span>
+                        <span>#1 APAC</span>
+                    </div>
+                    <div class="ranking-content">
+                        <div class="ranking-avatar-wrapper">
+                            <div class="sample-image-placeholder agent-placeholder ranking-avatar-img" data-name="Sample TenZ">
+                                <span class="sample-image-text">Sample TenZ</span>
+                            </div>
+                        </div>
+                        <div class="ranking-info">
+                            <div class="ranking-name">TenZ</div>
+                            <div class="ranking-tag">#SEN</div>
+                            <div class="ranking-rank">
+                                <img src="https://tracker.gg/images/valorant/ranks/Radiant.png" alt="Radiant" class="rank-icon" onerror="this.style.display='none';">
+                                <span>Radiant</span>
+                            </div>
+                            <div class="ranking-rr">RR: 1,234</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ranking-card" onclick="searchPlayer('yay', 'C9')">
+                    <div class="ranking-badge na-badge">
+                        <span class="badge-icon">🏆</span>
+                        <span>#1 NA</span>
+                    </div>
+                    <div class="ranking-content">
+                        <div class="ranking-avatar-wrapper">
+                            <div class="sample-image-placeholder agent-placeholder ranking-avatar-img" data-name="Sample yay">
+                                <span class="sample-image-text">Sample yay</span>
+                            </div>
+                        </div>
+                        <div class="ranking-info">
+                            <div class="ranking-name">yay</div>
+                            <div class="ranking-tag">#C9</div>
+                            <div class="ranking-rank">
+                                <img src="https://tracker.gg/images/valorant/ranks/Radiant.png" alt="Radiant" class="rank-icon" onerror="this.style.display='none';">
+                                <span>Radiant</span>
+                            </div>
+                            <div class="ranking-rr">RR: 1,189</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ranking-card" onclick="searchPlayer('ScreaM', 'KC')">
+                    <div class="ranking-badge eu-badge">
+                        <span class="badge-icon">🏆</span>
+                        <span>#1 EU</span>
+                    </div>
+                    <div class="ranking-content">
+                        <div class="ranking-avatar-wrapper">
+                            <div class="sample-image-placeholder agent-placeholder ranking-avatar-img" data-name="Sample ScreaM">
+                                <span class="sample-image-text">Sample ScreaM</span>
+                            </div>
+                        </div>
+                        <div class="ranking-info">
+                            <div class="ranking-name">ScreaM</div>
+                            <div class="ranking-tag">#KC</div>
+                            <div class="ranking-rank">
+                                <img src="https://tracker.gg/images/valorant/ranks/Radiant.png" alt="Radiant" class="rank-icon" onerror="this.style.display='none';">
+                                <span>Radiant</span>
+                            </div>
+                            <div class="ranking-rr">RR: 1,156</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- フッター -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="about.html">このサイトについて</a>
+                <a href="terms.html">利用規約</a>
+                <a href="privacy.html">プライバシーポリシー</a>
+            </div>
+            <div class="footer-text">
+                <p>Mimi Trackerは、Riot Games, Inc.とは提携しておらず、Riot Gamesの公式サービスではありません。</p>
+                <p>VALORANTは、Riot Games, Inc.の登録商標です。</p>
+                <p>&copy; 2024 Mimi Tracker. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ログインモーダル -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2>ログイン</h2>
+            <p class="modal-subtitle">Riotアカウントでログインして自分の戦績を表示</p>
+            <form class="login-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="username">ユーザー名</label>
+                    <input type="text" id="username" name="username" placeholder="プレイヤー名#タグライン" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">パスワード</label>
+                    <input type="password" id="password" name="password" placeholder="パスワード" required>
+                </div>
+                <button type="submit" class="login-submit-btn">ログイン</button>
+                <p class="login-note">※ RSO認証機能はAPIキー発行後に実装予定です</p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function handleSearch(event) {
+            event.preventDefault();
+            const gameName = document.getElementById('gameName').value.trim();
+            const tagLine = document.getElementById('tagLine').value.trim();
+            const region = document.getElementById('region').value;
+            
+            window.location.href = `player.html?name=${encodeURIComponent(gameName)}&tag=${encodeURIComponent(tagLine)}&region=${region}`;
+        }
+
+        function searchPlayer(name, tag) {
+            document.getElementById('gameName').value = name;
+            document.getElementById('tagLine').value = tag;
+            handleSearch(new Event('submit'));
+        }
+
+        function openLoginModal() {
+            document.getElementById('loginModal').style.display = 'flex';
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            alert('RSO認証機能はAPIキー発行後に実装予定です');
+            closeLoginModal();
+        }
+
+        // モーダル外クリックで閉じる
+        window.onclick = function(event) {
+            const modal = document.getElementById('loginModal');
+            if (event.target == modal) {
+                closeLoginModal();
+            }
+        }
+    </script>
+</body>
+</html>
